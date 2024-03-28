@@ -1,7 +1,7 @@
 // src/services/apiService.js
 import axios from 'axios';
 
-const BASE_URL = 'https://dummyjson.com/products';
+const BASE_URL = 'http://127.0.0.1:5000/products';
 
 // Fetches details for a single product by its ID
 export const getProductDetails = async (id) => {
@@ -35,12 +35,20 @@ export const searchProducts = async (query) => {
 
 // Adds a new product to the database
 export const addProduct = (product) => {
-    return axios.post(`${BASE_URL}/add`, JSON.stringify(product));
+    return axios.post(`${BASE_URL}/add`, JSON.stringify(product), {
+        headers:{
+            "Content-Type": "application/json",
+        },
+    });
 };
 
 // Edits an existing product by ID
 export const editProduct = (id, product) => {
-    return axios.put(`${BASE_URL}/${id}`, JSON.stringify(product));
+    return axios.put(`${BASE_URL}/${id}`, JSON.stringify(product), {
+        headers:{
+            "Content-Type": "application/json",
+        },
+    });
 };
 
 // Deletes a product by its ID
